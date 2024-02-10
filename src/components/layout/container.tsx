@@ -9,8 +9,8 @@ export const Container = forwardRef<
   <main
     ref={ref}
     className={cn(
-      "mx-auto min-h-[calc(100dvh-4rem)] max-w-[1200px] p-6 pt-20",
-      className
+      "mx-auto min-h-[calc(100dvh-4rem)] w-full max-w-[1200px] p-6 pt-20",
+      className,
     )}
     {...props}
   />
