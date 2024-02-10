@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
     <Container>
-      <section className="flex flex-wrap justify-center gap-3">
+      <section className="grid grid-cols-2 justify-center gap-3 sm:grid-cols-3 lg:grid-cols-4 [@media(min-width:1200px)]:grid-cols-5">
         {pokemon.map((item, index) => (
           <PokemonCard key={index} pokemon={item} />
         ))}

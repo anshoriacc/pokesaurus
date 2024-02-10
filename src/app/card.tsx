@@ -10,15 +10,15 @@ const PokemonCard = ({ pokemon }: Props) => {
   return (
     <Link
       href={`pokemon/${pokemon.id}`}
-      className="flex w-[200px] flex-col items-center gap-2 overflow-hidden rounded-xl p-4 transition-all hover:-translate-y-1 hover:bg-neutral-50 dark:hover:bg-neutral-900">
+      className="flex w-full flex-col items-center gap-2 overflow-hidden rounded-xl p-4 transition-all hover:-translate-y-1 hover:bg-neutral-50 dark:hover:bg-neutral-900">
       <Image
         src={pokemon.pokemon_sprites[0].sprites ?? "/assets/fallback.webp"}
         alt={pokemon.name}
-        width={168}
-        height={168}
+        width={200}
+        height={200}
         placeholder="blur"
         blurDataURL="/assets/fallback.webp"
-        className="aspect-[1] w-[168px] object-cover"
+        className="aspect-[1] w-full object-cover"
       />
 
       <div className="flex flex-col items-center">
@@ -28,7 +28,7 @@ const PokemonCard = ({ pokemon }: Props) => {
           #{pokemon.id.toString().padStart(4, "0")}
         </p>
 
-        <div className="flex flex-wrap gap-1">
+        <div className="flex flex-wrap items-center justify-center gap-1">
           {pokemon.pokemon_types.map((types, index) => (
             <TypeBadge key={index} type={types.types.name} />
           ))}
