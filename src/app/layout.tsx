@@ -27,7 +27,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          "relative bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50",
+          "overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 [&_*]:box-border",
         )}>
         <ThemeProvider
           attribute="class"

@@ -6,7 +6,7 @@ import pokeball from "@/assets/pokeball.svg";
 
 export const Navbar = () => {
   return (
-    <div className="pointer-events-none fixed top-4 h-0 w-screen px-[5%]">
+    <div className="pointer-events-none fixed top-4 h-0 w-screen px-[5%] z-[1]">
       <header className="pointer-events-auto mx-auto flex h-12 w-full max-w-[800px] items-center justify-between rounded-full bg-neutral-950 pl-0.5 pr-1 shadow transition-all duration-300 hover:shadow-lg dark:bg-white">
         <Link
           href="/"

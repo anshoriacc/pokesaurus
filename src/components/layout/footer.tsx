@@ -10,17 +10,15 @@ export const Footer = async ({ className }: Props) => {
     <footer className="border-t border-t-neutral-200 dark:border-t-neutral-800">
       <div
         className={cn(
-          "mx-auto flex h-16 max-w-[1200px] items-center justify-center px-6",
-          className
-        )}
-      >
+          "mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6",
+          className,
+        )}>
         <span className="text-neutral-500">
           © {dayjs().get("year")} Pokésaurus.{" "}
           <Link
-            href="https://github.com/anshoriacc/pokedex-nextjs"
+            href="https://github.com/anshoriacc/pokesaurus"
             target="_blank"
-            className="hover:text-primary-yellow transition-all"
-          >
+            className="transition-all hover:text-primary-yellow">
             src
           </Link>
         </span>

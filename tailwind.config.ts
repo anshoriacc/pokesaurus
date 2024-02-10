@@ -25,6 +25,9 @@ const config = {
           sky: "#5db9ff",
           blue: "#363b81",
         },
+        neutral: {
+          850: "#1e1e1e",
+        },
       },
       keyframes: {
         "accordion-down": {

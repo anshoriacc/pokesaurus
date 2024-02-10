@@ -1,5 +1,4 @@
-// lib/client.js
-import { HttpLink } from "@apollo/client";
+import { HttpLink, gql } from "@apollo/client";
 import {
   NextSSRInMemoryCache,
   NextSSRApolloClient,
@@ -14,3 +13,39 @@ export const { getClient } = registerApolloClient(() => {
     }),
   });
 });
+
+export const getPokemonListQuery = gql`
+  query pokemonListQuery {
+    pokemon: pokemon_v2_pokemon(limit: 50) {
+      id
+      name
+      height
+      weight
+      pokemon_sprites: pokemon_v2_pokemonsprites {
+        sprites(path: "other.home.front_default")
+      }
+      pokemon_types: pokemon_v2_pokemontypes {
+        types: pokemon_v2_type {
+          name
+        }
+      }
+    }
+  }
+`;
+
+export type TPokemon = {
+  id: number;
+  name: string;
+  height: number;
+  weight: number;
+  pokemon_sprites: {
+    sprites: string;
+  }[];
+  pokemon_types: {
+    types: { name: string };
+  }[];
+};
+
+export type TPokemonList = {
+  pokemon: TPokemon[];
+};

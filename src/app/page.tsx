@@ -1,18 +1,23 @@
 import { Container } from "@/components/layout/container";
-import { getClient } from "@/lib/graphql-client";
-import { gql } from "@apollo/client";
-
-const query = gql`
-  query samplePokeAPIquery {
-    gen3_species: pokemon_v2_pokemonspecies {
-      name
-      id
-    }
-  }
-`;
+import {
+  TPokemonList,
+  getClient,
+  getPokemonListQuery,
+} from "@/lib/graphql-client";
+import PokemonCard from "./card";
 
 export default async function Home() {
-  const { data } = await getClient().query({ query });
+  const { data } = await getClient().query({ query: getPokemonListQuery });
 
-  return <Container>{JSON.stringify(data)}</Container>;
+  const { pokemon } = data as TPokemonList;
+
+  return (
+    <Container>
+      <section className="flex flex-wrap justify-center gap-3">
+        {pokemon.map((item, index) => (
+          <PokemonCard key={index} pokemon={item} />
+        ))}
+      </section>
+    </Container>
+  );
 }
