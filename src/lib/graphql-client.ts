@@ -34,7 +34,9 @@ export const getPokemonListQuery = gql`
         }
       }
     }
-    pokemon_aggregate: pokemon_v2_pokemon_aggregate {
+    pokemon_aggregate: pokemon_v2_pokemon_aggregate(
+      where: { name: { _iregex: $name } }
+    ) {
       aggregate {
         count
       }

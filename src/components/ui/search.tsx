@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
 
 import { Input } from "./input";
@@ -11,6 +12,7 @@ import { cn } from "@/lib/utils";
 export const SearchInput = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname();
   const initialRender = useRef(true);
 
   const [text, setText] = useState<string>(searchParams.get("search") ?? "");
@@ -20,15 +22,15 @@ export const SearchInput = () => {
     (value: string) => {
       const params = new URLSearchParams(searchParams.toString());
 
-      params.set("search", value);
-
-      if (value === "") {
+      if (value) {
+        params.set("search", value);
+      } else {
         params.delete("search");
       }
 
-      router.push(`?${params.toString()}`);
+      router.push(`/?${params.toString()}`);
     },
-    [router, searchParams],
+    [searchParams],
   );
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export const SearchInput = () => {
     }
 
     handleSearch(debouncedText);
-  }, [debouncedText, handleSearch]);
+  }, [debouncedText]);
 
   return (
     <div

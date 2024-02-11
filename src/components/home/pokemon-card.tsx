@@ -20,10 +20,10 @@ const PokemonCard = ({ pokemon }: Props) => {
         className="pointer-events-none z-[1] aspect-[1] w-full animate-reveal rounded object-cover"
       />
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center gap-1">
         <h3 className="text-lg font-semibold">{pokemon.name}</h3>
 
-        <p className="text-neutral-500">
+        <p className="text-sm text-neutral-500">
           #{pokemon.id.toString().padStart(4, "0")}
         </p>
 

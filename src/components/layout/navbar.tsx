@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import pokeball from "@/assets/pokeball.svg";
 import { SearchInput } from "../ui/search";
+import { Suspense } from "react";
 
 export const Navbar = () => {
   return (
@@ -24,7 +25,9 @@ export const Navbar = () => {
         </Link>
 
         <div className="flex flex-1 items-center justify-end">
-          <SearchInput />
+          <Suspense>
+            <SearchInput />
+          </Suspense>
         </div>
       </header>
     </div>

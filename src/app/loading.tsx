@@ -8,13 +8,13 @@ export default function HomeLoading() {
         {[...Array(3)].map((_, index) => (
           <div
             key={index}
-            className="flex w-full flex-col items-center gap-2 overflow-hidden rounded-xl p-4 transition-all hover:-translate-y-1 hover:bg-neutral-50 dark:hover:bg-neutral-900">
+            className="flex w-full flex-col items-center gap-2 overflow-hidden rounded-xl bg-neutral-50 p-4 transition-all dark:bg-neutral-900">
             <Skeleton className="aspect-[1] w-full" />
 
-            <div className="flex flex-col items-center gap-0.5">
-              <Skeleton className="h-[26px] w-1/2" />
+            <div className="flex flex-col items-center gap-1">
+              <Skeleton className="h-7 w-3/4" />
 
-              <Skeleton className="h-[22px] w-1/4" />
+              <Skeleton className="h-5 w-1/2" />
 
               <div className="flex flex-wrap gap-1">
                 {[...Array(3)].map((types, index) => (
