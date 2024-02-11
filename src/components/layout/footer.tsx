@@ -1,7 +1,7 @@
-import dayjs from "dayjs";
+import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { ThemeToggle } from "../theme-toggle";
 
 type Props = { className?: string };
 
@@ -13,15 +13,24 @@ export const Footer = async ({ className }: Props) => {
           "mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6",
           className,
         )}>
-        <span className="text-neutral-500">
-          © {dayjs().get("year")} Pokésaurus.{" "}
+        <p className="text-neutral-500">
           <Link
             href="https://github.com/anshoriacc/pokesaurus"
             target="_blank"
             className="transition-all hover:text-primary-yellow">
-            src
+            Source
           </Link>
-        </span>
+          . Made with{" "}
+          <Link
+            href="https://pokeapi.co/"
+            target="_blank"
+            className="transition-all hover:text-primary-yellow">
+            PokéAPI
+          </Link>
+          .
+        </p>
+
+        <ThemeToggle />
       </div>
     </footer>
   );
