@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { ApolloWrapper } from "@/components/apollo-wrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,9 +35,11 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange>
-          <Navbar />
-          {children}
-          <Footer />
+          <ApolloWrapper>
+            <Navbar />
+            {children}
+            <Footer />
+          </ApolloWrapper>
         </ThemeProvider>
       </body>
     </html>
