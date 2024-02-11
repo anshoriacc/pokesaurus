@@ -15,19 +15,28 @@ export const { getClient } = registerApolloClient(() => {
 });
 
 export const getPokemonListQuery = gql`
-  query pokemonListQuery {
-    pokemon: pokemon_v2_pokemon(limit: 50) {
+  query pokemonListQuery($limit: Int, $offset: Int, $name: String) {
+    pokemon: pokemon_v2_pokemon(
+      limit: $limit
+      offset: $offset
+      where: { name: { _iregex: $name } }
+    ) {
       id
       name
       height
       weight
       pokemon_sprites: pokemon_v2_pokemonsprites {
-        sprites(path: "other.home.front_default")
+        sprites(path: "other.official-artwork.front_default")
       }
       pokemon_types: pokemon_v2_pokemontypes {
         types: pokemon_v2_type {
           name
         }
+      }
+    }
+    pokemon_aggregate: pokemon_v2_pokemon_aggregate {
+      aggregate {
+        count
       }
     }
   }
