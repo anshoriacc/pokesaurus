@@ -62,8 +62,8 @@ export const SearchInput = () => {
 
       <Search
         className={cn(
-          "pointer-events-none absolute right-2 top-1/2 h-5 w-5 -translate-y-1/2 transform transition-all peer-focus:text-primary-red",
-          text.length ? "text-primary-red" : "text-neutral-500",
+          "pointer-events-none absolute right-2 top-1/2 h-5 w-5 -translate-y-1/2 transform transition-all peer-focus:text-inherit",
+          text.length ? "text-inherit" : "text-neutral-500",
         )}
       />
     </div>

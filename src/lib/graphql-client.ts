@@ -67,8 +67,13 @@ export const getPokemonDetailQuery = gql`
         name
         evolution_chain: pokemon_v2_evolutionchain {
           species: pokemon_v2_pokemonspecies {
-            name
-            id
+            pokemon: pokemon_v2_pokemons(limit: 1) {
+              name
+              id
+              pokemon_sprites: pokemon_v2_pokemonsprites {
+                sprites(path: "other.official-artwork.front_default")
+              }
+            }
           }
         }
         flavor_text: pokemon_v2_pokemonspeciesflavortexts(
@@ -87,6 +92,15 @@ export const getPokemonNameListQuery = gql`
     pokemon: pokemon_v2_pokemon {
       id
       name
+    }
+  }
+`;
+
+export const getStatListQuery = gql`
+  query statListQuery {
+    stats: pokemon_v2_stat {
+      name
+      id
     }
   }
 `;
@@ -152,8 +166,13 @@ export type TPokemonDetail = TPokemonBase & {
     name: string;
     evolution_chain: {
       species: {
-        name: string;
-        id: number;
+        pokemon: {
+          name: string;
+          id: number;
+          pokemon_sprites: {
+            sprites: string;
+          }[];
+        }[];
       }[];
     };
     flavor_text: [
@@ -175,3 +194,10 @@ export type TPokemonList = {
 export type TPokemonDetailList = {
   pokemon: TPokemonDetail[];
 };
+
+export type TStat = {
+  name: string;
+  id: number;
+};
+
+export type TStatList = { stats: TStat[] };

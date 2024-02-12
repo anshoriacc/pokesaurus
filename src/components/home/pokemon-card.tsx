@@ -19,7 +19,7 @@ const PokemonCard = ({ pokemon }: Props) => {
         <TooltipTrigger asChild>
           <Link
             href={`${pokemon.name}`}
-            className="relative flex w-full flex-col items-center gap-2 overflow-hidden rounded-[20px] p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-neutral-50 dark:hover:bg-neutral-900">
+            className="relative flex w-full flex-col items-center gap-2 overflow-hidden rounded-[20px] bg-neutral-50 p-4 shadow transition-all duration-300 hover:-translate-y-1 dark:bg-neutral-900">
             <img
               src={
                 pokemon.pokemon_sprites[0].sprites ?? "/assets/fallback.webp"
@@ -50,7 +50,7 @@ const PokemonCard = ({ pokemon }: Props) => {
               </div>
             </div>
 
-            <div className="absolute left-4 top-4 z-0 flex flex-col text-xs hover:z-[1]">
+            <div className="absolute left-4 top-4 z-0 flex flex-col text-xs text-neutral-500 hover:text-inherit hover:z-[1]">
               <p>height</p>
               <p>
                 {pokemon.height
@@ -59,7 +59,7 @@ const PokemonCard = ({ pokemon }: Props) => {
               </p>
             </div>
 
-            <div className="absolute right-4 top-4 z-0 flex flex-col text-right text-xs hover:z-[1]">
+            <div className="absolute right-4 top-4 z-0 flex flex-col text-right text-xs text-neutral-500 hover:text-inherit hover:z-[1]">
               <p>weight</p>
               <p>
                 {pokemon.weight
@@ -70,7 +70,7 @@ const PokemonCard = ({ pokemon }: Props) => {
           </Link>
         </TooltipTrigger>
 
-        <TooltipContent>
+        <TooltipContent side="bottom">
           <p>Go to {pokemon.name}&apos;s detail</p>
         </TooltipContent>
       </Tooltip>
