@@ -29,7 +29,7 @@ export const Stats = ({ columns, data }: Props) => {
                   ? 0
                   : (Number(_data.value) / 255) * 100 + "%",
               }}
-              className="absolute left-0 h-full bg-white"
+              className="absolute left-0 h-full bg-neutral-950 dark:bg-white"
             />
             <div className="h-full w-full bg-neutral-50 dark:bg-neutral-900" />
           </div>
