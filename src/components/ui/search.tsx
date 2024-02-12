@@ -24,11 +24,11 @@ export const SearchInput = () => {
 
       if (value) {
         params.set("search", value);
+        router.push(`/?${params.toString()}`);
       } else {
         params.delete("search");
+        router.push(`${pathname}?${params.toString()}`);
       }
-
-      router.push(`/?${params.toString()}`);
     },
     [searchParams],
   );
@@ -41,6 +41,10 @@ export const SearchInput = () => {
 
     handleSearch(debouncedText);
   }, [debouncedText]);
+
+  useEffect(() => {
+    if (pathname !== "/") setText("");
+  }, [pathname]);
 
   return (
     <div

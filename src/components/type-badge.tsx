@@ -1,9 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-type Props = { type: string };
+type Props = { type: string; className?: string };
 
-const TypeBadge = ({ type }: Props) => {
+const TypeBadge = ({ type, className }: Props) => {
   const typeColors = (_type: string) => {
     switch (type) {
       case "normal":
@@ -48,7 +48,12 @@ const TypeBadge = ({ type }: Props) => {
   };
 
   return (
-    <Badge className={cn(typeColors(type), "font-normal text-neutral-900")}>
+    <Badge
+      className={cn(
+        typeColors(type),
+        "font-normal text-neutral-900",
+        className,
+      )}>
       {type}
     </Badge>
   );
