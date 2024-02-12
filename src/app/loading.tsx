@@ -5,7 +5,7 @@ export default function HomeLoading() {
   return (
     <Container>
       <section className="grid grid-cols-2 justify-center gap-6 sm:grid-cols-3 lg:grid-cols-4 [@media(min-width:1200px)]:grid-cols-5">
-        {[...Array(3)].map((_, index) => (
+        {[...Array(8)].map((_, index) => (
           <div
             key={index}
             className="flex w-full flex-col items-center gap-2 overflow-hidden rounded-xl bg-neutral-50 p-4 transition-all dark:bg-neutral-900">
