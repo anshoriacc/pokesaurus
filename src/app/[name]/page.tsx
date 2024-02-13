@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { cn, heightToMeterConversion, weightToKgConversion } from "@/lib/utils";
@@ -14,8 +15,7 @@ import {
 } from "@/lib/graphql-client";
 import TypeBadge from "@/components/type-badge";
 import { Stats } from "@/components/pokemon-detail/stats";
-import Link from "next/link";
-import { Fragment } from "react";
+import { CompareButton } from "@/components/pokemon-detail/compare-button";
 
 type Props = {
   params: { name: string };
@@ -67,7 +67,7 @@ export default async function DetailPage({ params }: Props) {
   }
 
   return (
-    <Container className="flex flex-col gap-6">
+    <Container className="relative flex flex-col gap-6">
       {/* title */}
       <section className="flex items-center gap-3">
         <span className="text-3xl text-neutral-500">
@@ -84,6 +84,7 @@ export default async function DetailPage({ params }: Props) {
       {/* left side */}
       <section className="grid grid-cols-1 gap-6 md:grid-cols-[40%_1fr]">
         <section className="flex flex-col gap-6">
+          {/* default sprites */}
           <img
             src={
               detail.pokemon_sprites[0].sprites.other["official-artwork"]
@@ -101,6 +102,7 @@ export default async function DetailPage({ params }: Props) {
             )}
           />
 
+          {/* front sprites */}
           <div className="grid grid-cols-2 gap-6">
             {detail.pokemon_sprites[0].sprites.other.showdown.front_default && (
               <div
@@ -125,6 +127,7 @@ export default async function DetailPage({ params }: Props) {
               </div>
             )}
 
+            {/* back sprites */}
             {detail.pokemon_sprites[0].sprites.other.showdown.back_default && (
               <div
                 className={cn(
@@ -148,6 +151,9 @@ export default async function DetailPage({ params }: Props) {
               </div>
             )}
           </div>
+
+          {/* compare button */}
+          <CompareButton pokemonName={detail.name} />
         </section>
 
         {/* right side */}
@@ -161,7 +167,7 @@ export default async function DetailPage({ params }: Props) {
                 <p className="font-semibold">
                   {detail.height
                     ? `${heightToMeterConversion(detail.height)}m`
-                    : "no data"}
+                    : "N/A"}
                 </p>
               </div>
 
@@ -171,7 +177,7 @@ export default async function DetailPage({ params }: Props) {
                 <p className="font-semibold">
                   {detail.weight
                     ? `${weightToKgConversion(detail.weight)}kg`
-                    : "no data"}
+                    : "N/A"}
                 </p>
               </div>
             </div>
@@ -194,50 +200,52 @@ export default async function DetailPage({ params }: Props) {
           {/* description */}
           <p>{detail.pokemon_specy.flavor_text[0].flavor_text}</p>
 
+          {/* stats */}
           <div className="flex flex-col gap-1">
             <h2 className="font-semibold">Base Stats</h2>
+
             <Stats columns={stats} data={detail.pokemon_stats} />
           </div>
 
+          {/* evolution chain */}
           <div className="flex flex-col gap-1">
             <h2 className="font-semibold">Evolution Chain</h2>
 
             <div className="flex flex-wrap items-center gap-3">
               {detail.pokemon_specy.evolution_chain.species.map(
                 (specy, index) => (
-                  <Fragment key={index}>
-                    <Link
-                      href={
-                        specy.pokemon[0].name === detail.name
-                          ? ""
-                          : `/${specy.pokemon[0].name}`
-                      }
-                      className={cn(
-                        "relative flex w-[200px] flex-col items-center gap-1 rounded-2xl p-3 text-center shadow transition-all duration-300 hover:-translate-y-1",
-                        specy.pokemon[0].name === detail.name
-                          ? "bg-neutral-900 dark:bg-neutral-50"
-                          : "bg-neutral-50 dark:bg-neutral-900",
-                      )}>
-                      <span className="text-neutral-500">
-                        {specy.pokemon[0].name}
-                      </span>
-                      <span className="absolute bottom-3 left-3 text-neutral-500">
-                        {index + 1}
-                      </span>
+                  <Link
+                    key={index}
+                    href={
+                      specy.pokemon[0].name === detail.name
+                        ? ""
+                        : `/${specy.pokemon[0].name}`
+                    }
+                    className={cn(
+                      "relative flex w-[200px] flex-col items-center gap-1 rounded-2xl p-3 text-center shadow transition-all duration-300 hover:-translate-y-1",
+                      specy.pokemon[0].name === detail.name
+                        ? "bg-neutral-900 dark:bg-neutral-50"
+                        : "bg-neutral-50 dark:bg-neutral-900",
+                    )}>
+                    <span className="text-neutral-500">
+                      {specy.pokemon[0].name}
+                    </span>
+                    <span className="absolute bottom-3 left-3 text-neutral-500">
+                      {index + 1}
+                    </span>
 
-                      <img
-                        src={
-                          specy.pokemon[0].pokemon_sprites[0].sprites ??
-                          "/assets/fallback.webp"
-                        }
-                        alt={specy.pokemon[0].name}
-                        width={200}
-                        height={200}
-                        loading="lazy"
-                        className="pointer-events-none w-full flex-1 animate-reveal rounded object-cover"
-                      />
-                    </Link>
-                  </Fragment>
+                    <img
+                      src={
+                        specy.pokemon[0].pokemon_sprites[0].sprites ??
+                        "/assets/fallback.webp"
+                      }
+                      alt={specy.pokemon[0].name}
+                      width={200}
+                      height={200}
+                      loading="lazy"
+                      className="pointer-events-none w-full flex-1 animate-reveal rounded object-cover"
+                    />
+                  </Link>
                 ),
               )}
             </div>

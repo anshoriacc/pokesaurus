@@ -16,7 +16,8 @@ export const Navbar = () => {
             src={pokeball}
             alt="logo"
             priority
-            className="h-10 w-10 group-hover:animate-[spin_5s_linear_infinite]"
+            draggable={false}
+            className="h-10 w-10 group-hover:animate-[spin_10s_linear_infinite]"
           />
 
           <span className="hidden text-xl font-bold text-neutral-50 transition-all dark:text-neutral-900 [@media(min-width:400px)]:block">

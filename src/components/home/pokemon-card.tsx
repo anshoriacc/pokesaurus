@@ -55,7 +55,7 @@ const PokemonCard = ({ pokemon }: Props) => {
               <p>
                 {pokemon.height
                   ? `${heightToMeterConversion(pokemon.height)}m`
-                  : "no data"}
+                  : "N/A"}
               </p>
             </div>
 
@@ -64,7 +64,7 @@ const PokemonCard = ({ pokemon }: Props) => {
               <p>
                 {pokemon.weight
                   ? `${weightToKgConversion(pokemon.weight)}kg`
-                  : "no data"}
+                  : "N/A"}
               </p>
             </div>
           </Link>

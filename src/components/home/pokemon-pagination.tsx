@@ -48,7 +48,6 @@ export const PokemonPagination = ({ totalData }: Props) => {
 
   const handleChangeLimit = useCallback(
     (value: string) => {
-      console.log(value);
       const params = new URLSearchParams(searchParams.toString());
       params.delete("page");
       params.set("limit", String(Number(value)));
@@ -58,7 +57,7 @@ export const PokemonPagination = ({ totalData }: Props) => {
   );
 
   return (
-    <section className="flex items-center justify-end gap-6 mt-auto">
+    <section className="mt-auto flex items-center justify-end gap-6">
       <div className="flex items-center gap-3">
         <span>Limit</span>
         <Select value={String(limit)} onValueChange={handleChangeLimit}>
