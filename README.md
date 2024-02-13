@@ -31,10 +31,21 @@ pnpm install
 
 5. If you use another package manager, remove `pnpm-lock.yaml` first and run:
 ```
+npm install
+# or
+yarn install
+# or
+bun install
+```
+
+5. Start development server:
+```
+pnpm dev
+# or
 npm run dev
 # or
 yarn dev
 # or
 bun dev
 ```
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
