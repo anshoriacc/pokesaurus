@@ -189,6 +189,11 @@ export type TPokemonNameList = {
 
 export type TPokemonList = {
   pokemon: TPokemonBase[];
+  pokemon_aggregate: {
+    aggregate: {
+      count: number;
+    };
+  };
 };
 
 export type TPokemonDetailList = {

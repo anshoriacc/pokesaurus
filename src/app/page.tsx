@@ -5,6 +5,7 @@ import {
   getPokemonListQuery,
 } from "@/lib/graphql-client";
 import PokemonCard from "../components/home/pokemon-card";
+import { PokemonPagination } from "@/components/home/pokemon-pagination";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -24,15 +25,18 @@ export default async function Home({ searchParams }: Props) {
     },
   });
 
-  const { pokemon } = data as TPokemonList;
+  const { pokemon, pokemon_aggregate } = data as TPokemonList;
+  const { count } = pokemon_aggregate.aggregate;
 
   return (
-    <Container>
+    <Container className="flex flex-col gap-6">
       <section className="grid grid-cols-2 justify-center gap-6 sm:grid-cols-3 lg:grid-cols-4 [@media(min-width:1200px)]:grid-cols-5">
         {pokemon.map((item, index) => (
           <PokemonCard key={index} pokemon={item} />
         ))}
       </section>
+
+      <PokemonPagination totalData={count} />
     </Container>
   );
 }

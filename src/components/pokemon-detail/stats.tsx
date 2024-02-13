@@ -13,11 +13,11 @@ export const Stats = ({ columns, data }: Props) => {
   }));
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="group/parent flex flex-col gap-1">
       {mergedData.map(_data => (
         <div
           key={_data.id}
-          className="group grid cursor-default grid-cols-[120px_1fr_32px] items-center gap-2">
+          className="group/statitem grid cursor-default grid-cols-[120px_1fr_32px] items-center gap-2">
           <span className="text-right text-sm text-neutral-500 group-hover:text-inherit">
             {_data.name}
           </span>
@@ -29,12 +29,12 @@ export const Stats = ({ columns, data }: Props) => {
                   ? 0
                   : (Number(_data.value) / 255) * 100 + "%",
               }}
-              className="absolute left-0 h-full bg-neutral-950 dark:bg-white"
+              className="rounded-full absolute left-0 h-full bg-neutral-950 group-hover/parent:bg-neutral-500 group-hover/statitem:bg-neutral-950 dark:bg-white dark:group-hover/statitem:bg-white"
             />
             <div className="h-full w-full bg-neutral-50 dark:bg-neutral-900" />
           </div>
 
-          <span className="text-sm text-neutral-500 group-hover:text-inherit">
+          <span className="text-sm text-neutral-500 group-hover/statitem:text-inherit">
             {_data.value}
           </span>
         </div>

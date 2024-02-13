@@ -21,6 +21,9 @@ export default function DetailLoading() {
             <Skeleton className="h-6 w-full" />
             <Skeleton className="h-6 w-full" />
             <Skeleton className="h-6 w-full" />
+            <Skeleton className="h-6 w-full" />
+            <Skeleton className="h-6 w-full" />
+            <Skeleton className="h-6 w-full" />
             <Skeleton className="h-6 w-2/5" />
           </div>
         </section>

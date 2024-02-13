@@ -23,6 +23,8 @@ export const SearchInput = () => {
       const params = new URLSearchParams(searchParams.toString());
 
       if (value) {
+        params.delete("page");
+        params.delete("limit");
         params.set("search", value);
         router.push(`/?${params.toString()}`);
       } else {
